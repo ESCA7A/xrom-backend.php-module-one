@@ -10,7 +10,7 @@
 </head>
 <body>
 <div style="margin-left: 30%">
-    <form method="POST" action="#">
+    <form method="POST" action="./CommentController.php">
         <div style="border: 5px outset; width: 40%">
             <div style="padding: 5%">
                 <input name="author" type="text" placeholder="enter name">

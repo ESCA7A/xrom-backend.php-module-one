@@ -16,18 +16,17 @@ class CommentController extends Comment
 
         if ($author && $comment) {
             try {
-                if (!$this->insertComment($author,  $comment)){
-                    throw new Exception('something is wrong: ');
+                if ($this->insertComment($author,  $comment)){
+
+                    $this->insertComment($author, $comment);
+
+                    return $this->redirect('simple-comment-form.php');
                 }
             } catch (Exception $e) {
                 echo 'DANGER: '. $e->getMessage();
 
                 return $this->redirect('simple-comment-form.php');
             }
-
-            $this->insertComment($author, $comment);
-
-            return $this->redirect('simple-comment-form.php');
         }
     }
 

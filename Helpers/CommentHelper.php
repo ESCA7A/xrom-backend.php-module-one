@@ -8,11 +8,11 @@ class CommentHelper
 
         try {
             if (0 !== preg_match_all('/[" "]+/', $author)) {
-                throw new Exception('Oooooops: remove spaces');
+                throw new Exception('Oooooops: remove spaces'. PHP_EOL);
             }
 
             if (0 != preg_match_all('/[0-9]+/', $author)) {
-                throw new Exception('Oooooops: remove numbers');
+                throw new Exception('Oooooops: remove numbers'. PHP_EOL);
             }
 
         } catch (Exception $e) {
@@ -31,7 +31,7 @@ class CommentHelper
 
         try {
             if (!$comment) {
-                throw new Exception('Comment cant be empty!');
+                throw new Exception('Comment cant be empty!'. PHP_EOL);
             }
         } catch (Exception $e) {
             echo $e->getMessage();

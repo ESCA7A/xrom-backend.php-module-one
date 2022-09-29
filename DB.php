@@ -6,6 +6,9 @@ class DB
 {
     public static $PDOinstance;
 
+    /**
+     * @throws Exception
+     */
     public function __CONSTRUCT()
     {
         $env = new EnvParser();
@@ -15,7 +18,7 @@ class DB
             try {
                 self::$PDOinstance = new \PDO('mysql:host=localhost;'.'dbname='.$env['DB_NAME'], $env['USERNAME'], $env['PASSWORD']);
             } catch (PDOException $e) {
-                die('Ужасная ошибка: '. $e->getMessage());
+                die('server is temporarily suspended: '. $e->getMessage());
             }
 
             return self::$PDOinstance;
