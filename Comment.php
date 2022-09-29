@@ -1,19 +1,17 @@
 <?php
 
-require __DIR__.'/EnvParser.php';
+require __DIR__.'/QueryBuilder.php';
 
-class Comment
+class Comment extends QueryBuilder
 {
-    public function __CONSTRUCT(EnvParser $envParser)
-    {
-        $this->envData = $envParser;
-    }
+    protected DB $conn;
+    private QueryBuilder $queryBuilder;
 
-    public function hiData()
+    public function __CONSTRUCT()
     {
-        print_r($this->envData->getEnv());
+        $this->queryBuilder = new QueryBuilder();
+        $this->query(self::$comment)->execute();
     }
 }
 
-$classCom = new Comment(new EnvParser());
-$classCom->hiData();
+$classCom = new Comment();
