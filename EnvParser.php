@@ -15,15 +15,13 @@ class EnvParser
 
         $username = rtrim(fgets($this->env));
         $username = explode('=', $username);
-        $this->DB_DATA['username'] = $username[1];
+        $this->DB_DATA['USERNAME'] = $username[1];
 
 
         $password = rtrim(fgets($this->env));
         $password = explode('=', $password);
-        $this->DB_DATA['password'] = $password[1];
+        $this->DB_DATA['PASSWORD'] = $password[1];
 
         return $this->DB_DATA;
     }
 }
-
-
