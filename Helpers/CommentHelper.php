@@ -1,7 +1,24 @@
 <?php
 
-class CommentHelper
+require_once __DIR__.'/../Comment.php';
+
+class CommentHelper extends Comment
 {
+    public string $url = 'http://localhost:8000/';
+
+    /**
+     * @param $url
+     * @return null
+     */
+    public function redirect($url)
+    {
+        return header('Location: ' . $this->url.$url, true, 301);
+    }
+
+    /**
+     * @param $author
+     * @return string
+     */
     public function validateAuthor($author): string
     {
         $author = trim(htmlspecialchars($author));
@@ -25,6 +42,10 @@ class CommentHelper
 
     }
 
+    /**
+     * @param $comment
+     * @return bool|string
+     */
     public function validateComment($comment): bool|string
     {
         $comment = trim(htmlspecialchars($comment));
@@ -40,5 +61,20 @@ class CommentHelper
         }
 
         return $comment;
+    }
+
+    public function indexComment(Comment $comment): array|false
+    {
+        $comments =  $comment->queryFetchAllAssoc('SELECT author, comment, created_at FROM comments ORDER BY id DESC');
+
+        if (is_array($comments)) {
+            try {
+                return $comments;
+            } catch (Exception $e) {
+                exit ('<pre>'. 'something trouble when we getting comments'. PHP_EOL . $e->getMessage());
+            }
+        }
+
+        return false;
     }
 }

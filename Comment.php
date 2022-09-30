@@ -1,16 +1,23 @@
 <?php
 
-require __DIR__.'/QueryBuilder.php';
+require_once __DIR__.'/QueryBuilder.php';
 
 class Comment extends QueryBuilder
 {
-    protected DB $conn;
-    private QueryBuilder $queryBuilder;
+    private static $queryBuilder;
 
     public function __CONSTRUCT()
     {
-        $this->queryBuilder = new QueryBuilder();
-        $this->query(self::$comment)->execute();
+        if (!self::$queryBuilder) {
+            try {
+                self::$queryBuilder = new QueryBuilder();
+                $this->comment();
+            } catch (Exception $e) {
+                exit('<pre> table message!!! : ' . $e->getMessage());
+            }
+
+            return self::$queryBuilder;
+        }
     }
 }
 

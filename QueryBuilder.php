@@ -1,11 +1,9 @@
 <?php
 
-require __DIR__.'/DB.php';
+require_once __DIR__.'/DB.php';
 
 class QueryBuilder extends DB
 {
-    public static string $query = "INSERT INTO comments(author, comment, created_at) VALUES (:author, :comment, current_timestamp)";
-
     public static string $comment = "CREATE TABLE IF NOT EXISTS comments (
              id BIGINT AUTO_INCREMENT PRIMARY KEY,
              author VARCHAR(32) NOT NULL,
@@ -20,7 +18,9 @@ class QueryBuilder extends DB
 
     public function insertComment($author, $comment): bool
     {
-        return $this->prepare(self::$query)->execute([
+        $query = "INSERT INTO comments(author, comment, created_at) VALUES (:author, :comment, current_timestamp)";
+
+        return $this->prepare($query)->execute([
             'author' => $author,
             'comment' => $comment,
         ]);

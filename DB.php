@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/EnvParser.php';
+require_once __DIR__.'/EnvParser.php';
 
 class DB
 {
