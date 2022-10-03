@@ -27,3 +27,21 @@ _Сохранение необходимо реализовать в отдел�
 
 * Смёржить в ветку backend ветку frontend. 
 * После, Ветку backend спулить в master.
+
+### DEPLOYMENT
+* clone repo
+```
+#clone repo
+#
+user@workspace:&> git clone git@github.com:ESCA7A/module-one.git example
+#
+#go to repo
+#
+user@workspace:&> cd example
+#
+#copy .ENV config
+#
+user@workspace:&> cp .env.example .env
+```
+* change .ENV configuration
+* run `php -S localhost:8000` in terminal
